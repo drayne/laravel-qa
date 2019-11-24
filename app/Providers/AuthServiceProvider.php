@@ -14,6 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Question' => 'App\Policies\QuestionPolicy'
     ];
 
     /**
@@ -25,12 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('update-question', function ($user, $question){
-            return $user->id === $question->user_id;
-        });
-
-        Gate::define('delete-question', function ($user, $question){
-            return $user->id === $question->user_id;
-        });
+//        Gate::define('update-question', function ($user, $question){
+//            return $user->id === $question->user_id;
+//        });
+//
+//        Gate::define('delete-question', function ($user, $question){
+//            return $user->id === $question->user_id;
+//        });
     }
 }
