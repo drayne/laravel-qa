@@ -32,8 +32,10 @@ class AnswersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Answer  $answer
+     * @param Question $question
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Question $question, Answer $answer)
     {
@@ -44,9 +46,11 @@ class AnswersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Answer  $answer
+     * @param \Illuminate\Http\Request $request
+     * @param Question $question
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Question $question, Answer $answer)
     {
@@ -55,6 +59,13 @@ class AnswersController extends Controller
         $answer->update($request->validate([
             'body' => 'required'
         ]));
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been updated',
+                'body_html' => $answer->body_html
+            ]);
+        }
 
         return redirect()->route('questions.show', $question->slug)->with('successs', 'Your answer has been updated');
     }
@@ -70,6 +81,12 @@ class AnswersController extends Controller
         $this->authorize('delete', $answer);
 
         $answer->delete();
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Answer deleted'
+            ]);
+        }
 
         return back()->with('success', 'Answer deleted');
     }
