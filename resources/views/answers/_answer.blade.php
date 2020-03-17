@@ -1,11 +1,24 @@
+{{--
 <answer :answer="{{ $answer }}" inline-template>
     <div class="media post">
-{{--            @include('shared._vote', [--}}
-{{--                'model' => $answer--}}
-{{--            ])--}}
-{{--            @include('shared._accept', [--}}
-{{--                'model' => $answer--}}
-{{--            ])--}}
+--}}
+{{--            @include('shared._vote', [--}}{{--
+
+--}}
+{{--                'model' => $answer--}}{{--
+
+--}}
+{{--            ])--}}{{--
+
+--}}
+{{--            @include('shared._accept', [--}}{{--
+
+--}}
+{{--                'model' => $answer--}}{{--
+
+--}}
+{{--            ])--}}{{--
+
         <vote :model="{{ $answer }}" name="answer"></vote>
         <div class="media-body">
             <form v-if="editing">
@@ -26,11 +39,21 @@
 
                             @can('delete', $answer)
                                 <button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
-{{--                                <form class="form-delete" method="post" action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}">--}}
-{{--                                    @method('DELETE')--}}
-{{--                                    @csrf--}}
-{{--                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure')">Delete</button>--}}
-{{--                                </form>--}}
+--}}
+{{--                                <form class="form-delete" method="post" action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}">--}}{{--
+
+--}}
+{{--                                    @method('DELETE')--}}{{--
+
+--}}
+{{--                                    @csrf--}}{{--
+
+--}}
+{{--                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure')">Delete</button>--}}{{--
+
+--}}
+{{--                                </form>--}}{{--
+
                             @endcan
                         </div>
                     </div>
@@ -44,3 +67,4 @@
         </div>
     </div>
 </answer>
+--}}
