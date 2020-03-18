@@ -28,7 +28,7 @@
         props: ['name', 'model'],
         data() {
             return {
-                count: this.model.votes_count,
+                count: this.model.votes_count || 0,     //ako je this.model.votes_count null - ili nije setovan - bice 0
                 id: this.model.id
             }
         },
